@@ -2,8 +2,10 @@ import React from "react";
 import styles from "./CityList.module.css";
 import Spinner from "./Spinner";
 import CityItem from "./CityItem";
+import { useCities } from "../contexts/CitiesContextProvider";
 
-const CityList = ({ cities, isLoading }) => {
+const CityList = () => {
+  const { cities, isLoading } = useCities();
   if (isLoading) return <Spinner />;
   return (
     <ul className={styles.cityList}>
