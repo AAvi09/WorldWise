@@ -8,6 +8,8 @@ import Button from "./Button";
 import Message from "./Message";
 import { useUrlPosition } from "../hooks/useUrlPosition.js";
 import Spinner from "./Spinner";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -61,16 +63,35 @@ function Form() {
     fetchCityData();
   }, [lat, lng]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!cityName || !date) return;
+
+    const newCity = {
+      cityName,
+      country,
+      date,
+      notes,
+      position: { lat, lng },
+    };
+
+    console.log(newCity);
+  };
+
   if (isLoadingGeoCoding) {
     return <Spinner />;
   }
-
+  if (!lat || !lng) {
+    return (
+      <Message message="please provide a valid latitude or longitude by clicking on the map" />
+    );
+  }
   if (geoCodingError) {
     return <Message message={geoCodingError} />;
   }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
@@ -83,20 +104,17 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <input
+        <DatePicker
           id="date"
-          onChange={(e) => setDate(e.target.value)}
-          value={date}
+          onChange={(date) => setDate(date)}
+          selected={date}
+          dateFormat="dd/MM/yyyy"
         />
       </div>
 
       <div className={styles.row}>
         <label htmlFor="notes">Notes about your trip to {cityName}</label>
-        <textarea
-          id="notes"
-          onChange={(e) => setNotes(e.target.value)}
-          value={notes}
-        />
+        <textarea id="notes" onChange={(e) => setNotes(e.target.value)} />
       </div>
 
       <div className={styles.buttons}>
