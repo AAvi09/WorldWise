@@ -6,7 +6,7 @@ import styles from "./Form.module.css";
 import BackButton from "./BackButton";
 import Button from "./Button";
 import Message from "./Message";
-import { urlPosition } from "../hooks/useUrlPosition.js";
+import { useUrlPosition } from "../hooks/useUrlPosition.js";
 import Spinner from "./Spinner";
 
 export function convertToEmoji(countryCode) {
@@ -18,7 +18,8 @@ export function convertToEmoji(countryCode) {
 }
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 function Form() {
-  const { lat, lng } = urlPosition();
+  const { lat, lng } = useUrlPosition();
+  console.log(lat, lng);
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -27,6 +28,12 @@ function Form() {
   const [emoji, setEmoji] = useState("");
   const [geoCodingError, setGeoCodingError] = useState();
   useEffect(() => {
+    // Skip fetching if lat or lng are missing
+    if (lat === null || lng === null) {
+      setGeoCodingError("Please provide valid latitude and longitude.");
+      return;
+    }
+
     const fetchCityData = async () => {
       try {
         setIsLoadingGeoCoding(true);
@@ -38,7 +45,7 @@ function Form() {
         console.log(data);
         if (!data.countryCode) {
           throw new Error(
-            "That doesn't seem to be a city. click somewhere else "
+            "That doesn't seem to be a city. Click somewhere else."
           );
         }
         setCityName(data.city || data.locality || "");
@@ -50,6 +57,7 @@ function Form() {
         setIsLoadingGeoCoding(false);
       }
     };
+
     fetchCityData();
   }, [lat, lng]);
 

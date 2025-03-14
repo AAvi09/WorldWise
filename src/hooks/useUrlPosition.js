@@ -2,8 +2,15 @@ import { useSearchParams } from "react-router-dom";
 
 export const useUrlPosition = () => {
   const [searchParams] = useSearchParams();
-  const Lat = searchParams.get("lat");
-  const Lng = searchParams.get("lng");
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
 
-  return { Lat, Lng };
+  // Log the values for debugging
+  console.log("Retrieved lat:", lat, "Retrieved lng:", lng);
+
+  // Convert to numbers and handle missing/invalid values
+  return {
+    lat: lat ? parseFloat(lat) : null,
+    lng: lng ? parseFloat(lng) : null,
+  };
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./Map.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { urlPosition } from "../hooks/useUrlPosition.js";
+import { useUrlPosition } from "../hooks/useUrlPosition.js";
 import {
   MapContainer,
   TileLayer,
@@ -24,7 +24,7 @@ const Map = () => {
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
-  const { mapLat, mapLng } = urlPosition();
+  const { mapLat, mapLng } = useUrlPosition();
   useEffect(() => {
     if (mapLat && mapLng) {
       setMapPosition([mapLat, mapLng]);
