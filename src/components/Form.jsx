@@ -6,7 +6,8 @@ import styles from "./Form.module.css";
 import BackButton from "./BackButton";
 import Button from "./Button";
 import Message from "./Message";
-import { urlPosition } from "../hooks/useUrlPosition";
+import { urlPosition } from "../hooks/useUrlPosition.js";
+import Spinner from "./Spinner";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode

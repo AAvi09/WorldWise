@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./Map.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { urlPosition } from "../hooks/useUrlPosition";
+import { urlPosition } from "../hooks/useUrlPosition.js";
 import {
   MapContainer,
   TileLayer,
