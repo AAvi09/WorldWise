@@ -10,6 +10,8 @@ import { useUrlPosition } from "../hooks/useUrlPosition.js";
 import Spinner from "./Spinner";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useCities } from "../contexts/CitiesContextProvider.jsx";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -22,6 +24,7 @@ const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 function Form() {
   const { lat, lng } = useUrlPosition();
   console.log(lat, lng);
+  const { createCity } = useCities();
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -29,6 +32,7 @@ function Form() {
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
   const [geoCodingError, setGeoCodingError] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     // Skip fetching if lat or lng are missing
     if (lat === null || lng === null) {
@@ -63,7 +67,7 @@ function Form() {
     fetchCityData();
   }, [lat, lng]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!cityName || !date) return;
 
@@ -74,8 +78,8 @@ function Form() {
       notes,
       position: { lat, lng },
     };
-
-    console.log(newCity);
+    createCity(newCity);
+    navigate("/app/cities");
   };
 
   if (isLoadingGeoCoding) {
@@ -91,7 +95,10 @@ function Form() {
   }
 
   return (
-    <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+    <form
+      className={`${styles.form} ${isLoadingGeoCoding ? styles.Loading : ""}`}
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
