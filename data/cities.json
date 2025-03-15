@@ -70,50 +70,6 @@
         "lat": 41.17633110681311,
         "lng": -2.3395076448031698
       }
-    },
-    {
-      "id": "17f4",
-      "cityName": "Arcos de Jalon",
-      "country": "Spain",
-      "date": "2025-03-14T20:37:05.814Z",
-      "notes": "new location zero",
-      "position": {
-        "lat": 41.17633110681311,
-        "lng": -2.3395076448031698
-      }
-    },
-    {
-      "id": "5bb0",
-      "cityName": "Murca",
-      "country": "Portugal",
-      "date": "2025-03-14T20:47:19.719Z",
-      "notes": "",
-      "position": {
-        "lat": 41.41362248487311,
-        "lng": -7.475243738592639
-      }
-    },
-    {
-      "id": "5854",
-      "cityName": "Villeneuve-Saint-Georges",
-      "country": "France",
-      "date": "2025-03-14T20:51:19.106Z",
-      "notes": "paris",
-      "position": {
-        "lat": 48.749159216710254,
-        "lng": 2.4518157316219207
-      }
-    },
-    {
-      "id": "c4db",
-      "cityName": "Badia Tedalda",
-      "country": "Italy",
-      "date": "2025-03-14T20:51:32.377Z",
-      "notes": "san marino",
-      "position": {
-        "lat": 43.67850127524402,
-        "lng": 12.247100076125687
-      }
     }
   ]
 }
