@@ -61,14 +61,14 @@
       "id": "646498131"
     },
     {
-      "id": "0c55",
-      "cityName": "Arcos de Jalon",
+      "id": "56e1",
+      "cityName": "Borriol",
       "country": "Spain",
-      "date": "2025-03-14T20:37:05.814Z",
-      "notes": "new location zero",
+      "date": "2025-03-16T09:43:12.424Z",
+      "notes": "test",
       "position": {
-        "lat": 41.17633110681311,
-        "lng": -2.3395076448031698
+        "lat": 40.02276145723655,
+        "lng": -0.08636752684416217
       }
     }
   ]
