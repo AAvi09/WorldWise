@@ -1,10 +1,14 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import PageNotFound from "./pages/PageNotFound";
-import Pricing from "./pages/Pricing";
-import Product from "./pages/Product";
-import AppLayout from "./pages/AppLayout";
-import Login from "./pages/Login";
+import { lazy } from "react";
+// import HomePage from "./pages/HomePage";
+// import PageNotFound from "./pages/PageNotFound";
+// import Pricing from "./pages/Pricing";
+// import Product from "./pages/Product";
+// import AppLayout from "./pages/AppLayout";
+// import Login from "./pages/Login";
+
+// const HomePage = lazy();
+
 import CityList from "./components/CityList";
 import { useEffect, useState } from "react";
 import CountryList from "./components/CountryList";
