@@ -7,8 +7,6 @@ import { lazy } from "react";
 // import AppLayout from "./pages/AppLayout";
 // import Login from "./pages/Login";
 
-// const HomePage = lazy();
-
 import CityList from "./components/CityList";
 import { useEffect, useState } from "react";
 import CountryList from "./components/CountryList";
@@ -17,6 +15,14 @@ import Form from "./components/Form";
 import { CitiesProvider } from "./contexts/CitiesContextProvider";
 import { AuthProvider } from "./contexts/fakeAuthentication";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+const HomePage = lazy(() => import("./pages/HomePage"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Product = lazy(() => import("./pages/Product"));
+const AppLayout = lazy(() => import("./pages/AppLayout"));
+const Login = lazy(() => {
+  import("./pages/Login");
+});
 
 function App() {
   return (
